@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+validator.Checked=src/main/webapp/manage_files,src/main/java/com/faith/action/HomeAction.java,src/main/webapp/editor,src/main/webapp/Wopop_files
+validator.Unchecked=

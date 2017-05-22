@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.action.excludePattern" value="ws://*"/>
+	<constant name="struts.action.excludePattern" value="/chat/.*"/>
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+ 	<constant name="struts.devMode" value="true" />
+    <!-- 上传的文件的最大限制-->
+    <constant name="struts.multipart.maxSize" value="1024102400"/>
+    <constant name="struts.multipart.saveDir" value="/tmp"/>
+
+ 	<package name="home" namespace="/" extends="json-default">
+ 		<interceptors>  
+            <interceptor name="loginInterceptor" class="com.faith.interceptor.LoginInterceptor"></interceptor>  
+            <interceptor-stack name="loginDefaultStack">  
+                <interceptor-ref name="loginInterceptor"></interceptor-ref>  
+                <interceptor-ref name="defaultStack"></interceptor-ref>  
+            </interceptor-stack>  
+        </interceptors>
+
+
+		<default-action-ref name="index"></default-action-ref> 
+		<action name="index"> 
+			<result type="redirectAction">home_home</result> 
+		</action> 
+       	<action name="home_*" class="com.faith.action.HomeAction" method="{1}">
+            <result name="home">
+            	/home.jsp
+            </result>
+            <result name="blog">
+            	/blogDetail.jsp
+            </result>
+           	<result name="plist">
+            	/photoList.jsp
+            </result>
+            <result name="photo">
+            	/photoDetail.jsp
+            </result>
+            <result name="not found">
+            	/404.jsp
+            </result>
+            <result name="message">
+            	/msg.jsp
+            </result>
+        </action>
+        
+        <action name="admin_*" class="com.faith.action.AdminAction" method="{1}">
+
+        	<!-- 限制图片的格式和图片的大小 -->
+            <interceptor-ref name="fileUpload">
+                <param name="allowedTypes">
+                    image/jpg,audio/mp3
+                </param>
+                <param name="maximumSize">1024102400</param>
+            </interceptor-ref>
+            <!-- 默认的拦截器，必须要写 -->
+            <interceptor-ref name="loginDefaultStack" />
+        
+        	<result name="log_json" type="json">
+        	</result>
+            <result name="welcome_admin">
+            	/admin/welcome.jsp
+            </result>
+            <result name="login">
+            	/admin/login.jsp
+            </result>
+            <result name="listBlog">
+            	/admin/blogList.jsp
+            </result>
+            <result name="addBlog">
+            	/admin/blogForm.jsp
+            </result>
+        	<result name="listPhoto">
+            	/admin/photoList.jsp
+            </result>
+            <result name="addPhoto">
+            	/admin/photoForm.jsp
+            </result>
+            <result name="updAlbum">
+            	/admin/albumForm.jsp
+            </result>
+            <result name="showAlbum">
+            	/admin/albumForm.jsp
+            </result>
+            <result name="listMsg">
+            	/admin/msgList.jsp
+            </result>
+            <result name="del_json" type="json">
+        	</result>
+        </action>
+        
+    </package>
+</struts>

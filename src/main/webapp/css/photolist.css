@@ -1,0 +1,6 @@
+@charset "gb2312";
+/* CSS Document */
+.plist ul { width:580px; margin:auto;}
+.plist ul li { margin: 0 10px 11px 11px; float: left; background: #000; }
+.plist ul li img { width: 168px; height: 170px; border: #fff solid 1px; }
+.plist ul li img:hover { opacity: 0.2 }
