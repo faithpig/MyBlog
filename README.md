@@ -8,4 +8,4 @@
 后台登陆用的拦截器拦截非法请求<br>
 界面ui网上借鉴的模板...<br>
 其他功能有时间再加吧..<br>
-网址:www.xcfish.cn/MyBlog
+网址:www.xcfish.cn/MyBlog/
